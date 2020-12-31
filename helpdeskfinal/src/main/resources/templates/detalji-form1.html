@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+ <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+
+<link rel="stylesheet" th:href="@{/css/demo.css}" />
+
+</head>
+
+
+
+
+
+
+<body>
+
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<h2>
+				Detalji vezani za intervenciju.
+			</h2>
+		</div>
+	</div>
+	<br>
+	
+	<div class="row">
+		<div class="col-md-6">
+	
+			<label for="opis" >Naslov intervencije:</label>
+			<span class="text-primary" th:text="${intervencija.nazivIntervencije}"></span>
+			
+			<br>
+			
+			<label for="opis" >Intervenciju uputio:</label>
+			<span class="text-primary" th:text="${intervencija.konzumenti}"></span>
+			
+			<br>
+			
+			<label for="opis" >Dodjeljena na izvrsenje:</label>
+			<span class="text-primary" th:text="${intervencija.korisnik}"></span>
+			
+			<br>
+			
+			<label for="opis" >Datum unosa:</label>
+			<span class="text-primary" th:text="${intervencija.datum}"></span>
+			
+			
+			
+			 <span class="badge badge-default">Label</span>
+			  <span class="badge badge-default">Label</span>
+		</div>
+		<div class="col-md-6">
+			<h4>
+				Detalji o intervenciji.
+			</h4>
+	<div class="form-group shadow-textarea">		
+<form action="#" th:action="@{detalji-form}" th:object="${detObj1}" method="POST">
+<label for="opis">U koliko je potreban poseban opis kvara.</label>
+<textarea class="form-control" name="opis" id="opis" th:field="*{opis}" placeholder="Opis.:" rows="3" ></textarea>
+
+<label for="komentar">Komentar izvrsioca sta je uradio.</label>
+<textarea class="form-control" name="komentar" id="komentar" th:field="*{komentar}" placeholder="Komentar." rows="3" ></textarea>
+
+<button type="submit" class="btn btn-info col-2">Snimi</button>
+</form>
+
+
+</div>
+
+		</div>
+	</div>
+
+<a th:href="@{list}">Back to list</a>
+	
+
+</div>
+</body>
+
+
+</html>

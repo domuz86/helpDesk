@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Bootstrap CSS -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+	crossorigin="anonymous">
+
+
+
+
+</head>
+
+<body>
+	<div class="container">
+
+		<form action="#" th:action="@{save}" th:object="${intervencijaObj}"
+			method="POST">
+
+			<input type="text" th:field="*{idIntervencija}"
+				class="form-control mb-4 col-4" placeholder="id" /> 
+				<input type="text" th:field="*{nazivIntervencije}"
+				class="form-control mb-4 col-4" placeholder="Naziv intervencije" /> 
+				
+				<select th:field="*{konzumenti}">
+						<option value="">Intervencija od</option>
+						<option th:each="konzument : ${konzumentiSvi}"
+							th:value="${konzument.idKonzumenti}"
+							th:text="${konzument.imeIprezime}"></option>
+					</select>
+				
+				
+				
+				<input type="text" th:field="*{datum}"
+				class="form-control mb-4 col-4" placeholder="Datum" /> 
+				<input type="text" th:field="*{status}" class="form-control mb-4 col-4"
+				placeholder="Last name" />
+			
+			<select th:field="*{korisnik}">
+						<option value="">Intervencija dodjeljena:</option>
+						<option th:each="korisnik : ${korisnikSvi}"
+							th:value="${korisnik.idKorisnik}"
+							th:text="${korisnik.imeIprezime}"></option>
+					</select>
+		
+			
+
+			<button type="submit" class="btn btn-info col-2">Save</button>
+		</form>
+
+		<a th:href="@{list}">Back to list</a>
+
+
+	</div>
+</body>
+
+
+</html>

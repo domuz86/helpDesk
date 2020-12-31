@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Login - Shopme Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous" />
+</head>
+<body>
+<div class="container-fluid text-center" >
+    <div>
+      
+    </div>
+   <form action="#" th:action="@{/spasiKorisnika}"
+					th:object="${korisnik}" method="POST">
+
+
+
+					<input type="text" th:field="*{korisnickoIme}"
+						class="form-control mb-4 col-4" placeholder="KOrisnicko ime" />
+						 <input type="text" th:field="*{lozinka}"
+						class="form-control mb-4 col-4" placeholder="Lozinka" /> 
+						 <input type="text" th:field="*{imeIprezime}"
+						class="form-control mb-4 col-4" placeholder="Ime i prezime" /> 
+<br><br>
+					<button type="submit" class="btn btn-info col-2">Save</button>
+				</form>
+</div>
+</body>
+</html>

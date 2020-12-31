@@ -11,67 +11,221 @@
 	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
 	crossorigin="anonymous">
 
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+	crossorigin="anonymous">
+	
+	
+	
+	
 
-<link rel="stylesheet" th:href="@{/css/demo.css}" />
+<style type="text/css">
+body {
+	background: url('help.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	background-size: cover;
+	-o-background-size: cover;
+}
+</style>
+
+
 
 </head>
 
-<body>
-	<div class="container">
+<script th:if="${existRoll != null}">
+    $(function () {
+        $('#myModal').modal('show');
+    });
+</script>
 
-		<a th:href="@{intervencija-form}" class="btn btn-primary btn-sm mb-3">
-			Add employee</a>
+
+
+
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Navbar</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+				aria-controls="navbarNavAltMarkup" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+				<div class="navbar-nav">
+					<a class="nav-link active" aria-current="page" href="#">Pocetna</a>
+					<a class="nav-link" href="#">WAN</a> <a class="nav-link" href="#">LAN</a>
+					<a class="nav-link disabled" href="#" tabindex="-1"
+						aria-disabled="true">Odloguj se!</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<br>
+
+
+	<div class="container bg-white ">
+
+		<br>
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+			data-bs-target="#exampleModal">Dodaj novu intervenciju</button>
+
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModal" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">Dodaj novu
+							intervenciju</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+
+
+
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-bs-dismiss="modal">Zatvori</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<br><br>
 
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
 
-					<th>Naziv intervencije</th>
-					<th>Ime i prezime</th>
-					<th>Opis</th>
+					<th class="text-center">Naziv intervencije</th>
+					<th class="text-center">Zahtjev od</th>
+					<th class="text-center">Dodjeljena</th>
+					<th class="text-center">Kancelarija</th>
+					<th class="text-center">Datum unosa</th>
+					<th class="text-center">Akcija</th>
+					
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="temp : ${intervencije}">
 
-					<td th:text="${temp.nazivIntervencije}" />
-					<td th:text="${temp.imeIprezime}" />
-					<td><span th:each="temp1: ${temp.detalji}"> <span
-							th:text="${temp1.opis}" /> </span></td>
-
-
-
-					<td><a
-						th:href="@{detalji-form(intervencijeId=${temp.idIntervencija})}">Detalji</a>
+					<td class="text-center" th:text="${temp.nazivIntervencije}" />
+					<td class="text-center" th:text="${temp.konzumenti}" />
+					<td class="text-center" th:text="${temp.korisnik}" />
+					<td class="text-center" th:text="${temp.kancelarija}" />
+					<td class="text-center" th:text="${temp.datum}" />
+					<td class="text-center"><a
+						th:href="@{beze(intervencijeId=${temp.idIntervencija})}"
+						class="btn  btn-md bg-success text-white">Azuriraj</a>
+					
+					<a class="btn btn-info text-white "
+						th:href="@{bezeDetalji(intervencijeId=${temp.idIntervencija})}">Detalji</a>
+					
+					<a class="btn  bg-warning text-white"
+						th:href="@{zatvori(intervencijeId=${temp.idIntervencija})}">Zatvori</a>
+					
+					<a class="btn  bg-danger text-white"
+						th:href="@{zatvori(intervencijeId=${temp.idIntervencija})}">Izbrisi</a>
 					</td>
+					
 				</tr>
-
-
 
 			</tbody>
 
 
 		</table>
 
+
 		<hr>
 
-		<form action="#" th:action="@{intervencije}"
-			th:object="${intervencijaObj}" method="POST">
+<div class="row">
+		<div class="col-md-6">
+	<div class="card ">
+			<div class="card-body">
+				<h5 class="card-title">Nova Intervencija</h5>
+				<p class="card-text">Za unos nove intervencije potrebno je
+					popuniti sva polja.</p>
+
+				<form action="#" th:action="@{intervencije}"
+					th:object="${intervencijaObj}" method="POST">
 
 
 
-			<input type="text" th:field="*{nazivIntervencije}"
-				class="form-control mb-4 col-4" placeholder="First name" /> <input
-				type="text" th:field="*{imeIprezime}"
-				class="form-control mb-4 col-4" placeholder="Last name" />
+					<input type="text" th:field="*{nazivIntervencije}"
+						class="form-control mb-4 col-4" placeholder="Naziv intervencije" />
+					 
+					 	<span class="label label-warning">Izaberite podnosioca zahtjeva </span> <select th:field="*{konzumenti}">
+						<option value=>Izaberi podnosioca</option>
+						<option th:each="konzument : ${konzumentiSvi}"
+							th:value="${konzument.idKonzumenti}"
+							th:text="${konzument.imeIprezime}"></option>
+								</select>
+					 <br> <br> 
+					 
+					 <span class="label label-warning">Dodjeljena na izvrsenje: </span> 
+					 <select th:field="*{korisnik}">
+						<option value="">Izaberi korisnika</option>
+						<option th:each="korisnik : ${korisnikSvi}"
+							th:value="${korisnik.idKorisnik}"
+							th:text="${korisnik.imeIprezime}">
+							</option>
+					</select> 
+					<br><br>
+					<div class="col-md-3">
+						<span>
+					<label for="kancelarija" >Kancelarija:</label>
+				</span>
+				<input type="text" id="kancelarija" th:field="*{kancelarija}"
+						class="form-control mb-4 col-4" placeholder="Kancelarija" />
+					
+					</div>
+				 
+					<button type="submit" class="btn btn-info col-2">Save</button>
+				</form>
+			</div>
+		</div>
+		</div>
+		<div class="col-md-6">
+		
+		 <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Dobro dosao</h5>
+       
+        <p class="card-text"></p>
+       
+      </div>
+		
+		</div>
+	</div>
+</div>
 
 
+		
+<br>
 
-			<button type="submit" class="btn btn-info col-2">Save</button>
-		</form>
+
 
 
 	</div>
+
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
+		integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js"
+		integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
+		crossorigin="anonymous"></script>
 </body>
 
 

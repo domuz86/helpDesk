@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Login - Shopme Admin</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous" />
+        
+        <style type="text/css">
+           body {
+  background: url('help.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+        
+        
+        </style>
+        
+</head>
+<body>
+
+<!-- Background image -->
+  <div
+    id="intro-example"
+    class="p-5 text-center bg-image"  >
+    <div>
+      <div class="d-flex justify-content-center align-items-center h-100">
+        <div class="text-black">
+          <h1 class="mb-3">Help Desk ZŠ OS BiH</h1>
+          <h5 class="mb-4">Dobro došli!</h5>
+      
+          
+           <form th:action="@{/processLogin}" method="post" style="max-width: 600px; margin: 0 auto; background-color: gray;;">
+     
+        <div th:if="${param.error}">
+            <p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+        </div>
+         
+        <div th:if="${param.logout}">
+            <p class="text-warning">You have been logged out.</p>
+        </div>
+         
+        <div class="border border-secondary p-3 rounded">
+            <p>Unesite vaše korisničko ime i lozinku</p>
+            <p>
+                <input type="username" name="username" class="form-control" placeholder="Korisnicko ime" required autofocus/>
+            </p>
+            <p>
+                <input type="password" name="password" class="form-control" placeholder="Lozinka" required />
+            </p>
+           
+           
+            <p>
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </p>
+            
+            <p>
+            <a th:href="@{/registracija}">registracija</a>
+            </p>
+            
+            
+        </div>
+    </form>      
+          
+          
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Background image -->
+
+
+   
+   
+
+</body>
+</html>

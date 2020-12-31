@@ -16,4 +16,7 @@ public interface IntervencijaRepo extends JpaRepository<Intervencija, Integer> {
 	public List<Intervencija> findAllByOrderByIdIntervencijaDesc();
 	
 	
+	@Query("SELECT u FROM intervencija u WHERE u.status = 'aktivna'")
+	public List<Intervencija> findAllByStatus();
+	
 }

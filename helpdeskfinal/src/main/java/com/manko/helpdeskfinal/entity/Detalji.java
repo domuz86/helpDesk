@@ -17,17 +17,23 @@ public class Detalji {
 	private int id_detalji;
 
 	@Column(name = "opis")
-	private String opis;
+	String opis;
+	
+	@Column(name = "komentar")
+	String komentar;
+	
 
 	public Detalji() {
 		
 	}
 
-	public Detalji(int id_detalji, String opis) {
+	
+	public Detalji(String opis, String komentar) {
 		
-		this.id_detalji = id_detalji;
 		this.opis = opis;
+		this.komentar = komentar;
 	}
+
 
 	public int getId_detalji() {
 		return id_detalji;
@@ -37,18 +43,35 @@ public class Detalji {
 		this.id_detalji = id_detalji;
 	}
 
+
+
+
 	public String getOpis() {
 		return opis;
 	}
+
+
+
 
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
 
-	@Override
-	public String toString() {
-		return opis;
+
+
+
+	public String getKomentar() {
+		return komentar;
 	}
+
+
+
+
+	public void setKomentar(String komentar) {
+		this.komentar = komentar;
+	}
+
+	
 	
 	
 
